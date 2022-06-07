@@ -37,8 +37,7 @@ app.get("/api/shorturl/:short", async (req, res) => {
     });
 
     if (data) {
-        const url = data.original.includes(["http", "https"]) ? data.original : `http://${data.original}`;
-        res.redirect(url);
+        res.redirect(`${data.original.replace(['http://','https://'], "")}`);
     } else {
         res.redirect("/");
     }
